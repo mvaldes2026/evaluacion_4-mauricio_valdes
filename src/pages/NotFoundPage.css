@@ -1,0 +1,36 @@
+.not-found {
+  background-color: var(--blanco-puro);
+  border-radius: var(--borde-radio);
+  padding: 2.5rem 2rem;
+  box-shadow: var(--sombra-card);
+  border-left: 0.375rem solid var(--madera-roble);
+  text-align: center;
+}
+
+.not-found__header {
+  margin-bottom: 1rem;
+}
+
+.not-found__title {
+  color: var(--verde-araucaria);
+  font-size: 1.6rem;
+}
+
+.not-found__description {
+  margin-bottom: 1.5rem;
+}
+
+.not-found__link {
+  display: inline-block;
+  background-color: var(--verde-araucaria);
+  color: #FFFFFF;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--borde-radio);
+  font-weight: 600;
+  transition: var(--transicion-suave);
+}
+
+.not-found__link:hover {
+  background-color: var(--azul-lago);
+}

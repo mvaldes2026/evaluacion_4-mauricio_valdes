@@ -14,8 +14,8 @@
   --exito-fondo: #F0FDF4;
 
   --fuente-base: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  --borde-radio: 8px;
-  --sombra-card: 0 4px 12px rgba(27, 77, 62, 0.08);
+  --borde-radio: 0.5rem;
+  --sombra-card: 0 0.25rem 0.75rem rgba(27, 77, 62, 0.08);
   --transicion-suave: all 0.25s ease-in-out;
 }
 
@@ -26,7 +26,7 @@
   --borde-suave: #2E403C;
   --azul-lago: #5BA4BE;
   --madera-roble: #C48A52;
-  --sombra-card: 0 4px 12px rgba(0, 0, 0, 0.35);
+  --sombra-card: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.35);
   --error-texto: #FCA5A5;
   --error-fondo: #450A0A;
   --exito-texto: #86EFAC;
@@ -54,16 +54,16 @@ body {
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-.app-layout {
+#root {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-.app-layout__main {
+.main-content {
   flex: 1;
   width: 100%;
-  max-width: 1000px;
+  max-width: 62.5rem;
   margin: 0 auto;
   padding: 2rem 1.5rem;
 }
@@ -71,16 +71,36 @@ body {
 /* Enlace de salto rápido y foco de teclado WCAG 2.1 AA */
 .skip-link {
   position: absolute;
-  width: 1px;
-  height: 1px;
+  width: 0.0625rem;
+  height: 0.0625rem;
   padding: 0;
-  margin: -1px;
+  margin: -0.0625rem;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
 }
 
+.skip-link:focus {
+  position: fixed;
+  top: 0.625rem;
+  left: 0.625rem;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0.75rem 1.25rem;
+  background-color: var(--foco-accesible);
+  color: #FFFFFF;
+  font-weight: bold;
+  z-index: 9999;
+  border-radius: var(--borde-radio);
+  clip: auto;
+}
+
+:focus-visible {
+  outline: 0.1875rem solid var(--foco-accesible);
+  outline-offset: 0.1875rem;
+}
 .skip-link:focus {
   position: fixed;
   top: 10px;

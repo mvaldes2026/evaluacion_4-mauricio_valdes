@@ -1,0 +1,24 @@
+.footer {
+  background-color: #1C2826;
+  color: #F6F4F0;
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+}
+
+.footer__address {
+  font-style: normal;
+  margin-bottom: 1rem;
+}
+
+.footer__text {
+  margin-bottom: 0.25rem;
+}
+
+.footer__link {
+  color: #FFFFFF;
+  font-weight: bold;
+}
+
+.footer__link:hover {
+  text-decoration: underline;
+}
