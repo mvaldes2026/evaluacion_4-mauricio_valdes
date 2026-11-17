@@ -1,0 +1,73 @@
+.repo-card {
+  background-color: var(--tierra-fondo);
+  padding: 1.5rem;
+  border-radius: var(--borde-radio);
+  border: 0.0625rem solid var(--borde-suave);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.repo-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.repo-card__title {
+  color: var(--azul-lago);
+  font-size: 1.1rem;
+  word-break: break-word;
+}
+
+.repo-card__badge {
+  background-color: var(--madera-roble);
+  color: #FFFFFF;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999rem;
+  white-space: nowrap;
+}
+
+.repo-card__description {
+  margin-bottom: 1rem;
+}
+
+.repo-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.75rem;
+  font-size: 0.85rem;
+  color: var(--madera-roble);
+  margin-bottom: 1rem;
+}
+
+.repo-card__meta-label {
+  font-weight: 700;
+}
+
+.repo-card__meta-value {
+  margin: 0;
+}
+
+.repo-card__footer {
+  margin-top: auto;
+}
+
+.repo-card__link {
+  display: inline-block;
+  background-color: var(--verde-araucaria);
+  color: #FFFFFF;
+  text-decoration: none;
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--borde-radio);
+  font-weight: 600;
+  transition: var(--transicion-suave);
+}
+
+.repo-card__link:hover {
+  background-color: var(--azul-lago);
+}

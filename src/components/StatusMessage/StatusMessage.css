@@ -1,0 +1,26 @@
+.status-message {
+  display: block;
+  padding: 1rem 1.25rem;
+  border-radius: var(--borde-radio);
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  border: 0.09375rem solid transparent;
+}
+
+.status-message--loading {
+  background-color: var(--tierra-fondo);
+  color: var(--azul-lago);
+  border-color: var(--azul-lago);
+}
+
+.status-message--error {
+  background-color: var(--error-fondo);
+  color: var(--error-texto);
+  border-color: var(--error-texto);
+}
+
+.status-message--success {
+  background-color: var(--exito-fondo);
+  color: var(--exito-texto);
+  border-color: var(--exito-texto);
+}
