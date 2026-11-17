@@ -1,0 +1,45 @@
+.project-card {
+  background-color: var(--tierra-fondo);
+  padding: 1.5rem;
+  border-radius: var(--borde-radio);
+  border: 0.0625rem solid var(--borde-suave);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.project-card__title {
+  color: var(--azul-lago);
+  margin-bottom: 0.5rem;
+  font-size: 1.15rem;
+}
+
+.project-card__tech {
+  font-size: 0.9rem;
+  color: var(--madera-roble);
+  margin-bottom: 1rem;
+}
+
+.project-card__description {
+  margin-bottom: 1rem;
+}
+
+.project-card__footer {
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+.project-card__link {
+  display: inline-block;
+  background-color: var(--verde-araucaria);
+  color: #FFFFFF;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--borde-radio);
+  font-weight: 600;
+  transition: var(--transicion-suave);
+}
+
+.project-card__link:hover {
+  background-color: var(--azul-lago);
+}
