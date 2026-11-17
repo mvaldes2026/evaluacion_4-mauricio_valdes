@@ -15,6 +15,7 @@
 * Diagnosticar y resolver conflictos iniciales de sincronización en Git, errores de resolución de módulos en TypeScript (`ts(2307)`) y reglas estrictas de ESLint (`react-hooks/set-state-in-effect`).
 * Migrar fielmente la estructura, paleta territorial y contenido de la Evaluación N°2 hacia una arquitectura SPA en React y TypeScript sin uso de `any`, eliminando contenedores genéricos (`<div>`, `<span>`) y evitando medidas fijas en `px`.
 * Implementar la gestión de estado transversal (`ThemeContext`), el enrutamiento SPA (`react-router-dom`) y el consumo asíncrono de la API REST pública de GitHub.
+* Documentar de forma trazable el inventario de migración (`INVENTARIO.md`), la guía técnica (`README.md`) y la bitácora ética (`uso_ia.md`).
 
 ## 3. Prompts representativos
 1. *"Hola, Gemini, necesito iniciar con la Evaluación 4, dime todo lo que debemos hacer para poder iniciar bien y óptimamente."*
@@ -26,18 +27,20 @@
 7. *"Persiste el error en los demás archivos con el '../data/portfolioData' a pesar de que cambié el nombre a portfolioData.ts. Resolvamos eso, ah, y recuerda, TODOS LOS ARCHIVOS DEBEN LLEVAR CÓDIGO SEMÁNTICO, evitemos usar los <div> en lo posible y todo el código ordinario. También habían dicho algo de que ojalá evitar usar px en las medidas del CSS."*
 8. *"Pasemos a la rama 3, NO OLVIDES QUE NO SE USA px, y se usa código puramente semántico."*
 9. *"Antes de pasar a la siguiente rama, quiero ver por qué rayos hay un error acá [captura de `useFetchApi.ts` con `eslint(react-hooks/set-state-in-effect)`]. Recuerda actualizar el uso_ia.md y los comandos para subir esto (el commit)."*
+10. *"Ya, estamos en docs/documentacion-final. Terminemos con esta rama."*
+11. *"Dame el archivo del README.md definitivo para que quede bien estructurado (yo solo copio y pego) y ahora sí, actualiza el uso_ia.md y el commit, porque ahora sí, cerramos definitivamente. Y quiero saber lo siguiente. ¿Cómo se abre la página?"*
 
 ## 4. Output recibido
 * Hoja de ruta priorizada según ponderación de los 9 criterios de la rúbrica.
-* Diagnóstico y solución del error `ts(2307)` en VS Code y refactorización semántica de la rama `feat/rutas-y-contexto`.
-* Implementación de la rama `feat/consumo-api-y-vistas`: servicio `githubService.ts`, custom hook `useFetchApi<T>`, componentes reutilizables (`StatusMessage`, `ProjectCard`, `RepoCard`) y vistas `ProjectsPage` y `ContactPage` sin etiquetas `<div>`/`<span>` ni unidades `px`.
-* Diagnóstico de la regla `eslint(react-hooks/set-state-in-effect)` en `useFetchApi.ts` y refactorización para derivar los datos cacheados en renderizado, reservando `setState` exclusivamente para la resolución asíncrona de `fetch`.
+* Diagnóstico y solución de errores técnicos en Git Bash (`fetch first`), TypeScript (`ts(2307)` por nomenclatura y profundidad de rutas relativas) y ESLint (`react-hooks/set-state-in-effect` en `useFetchApi.ts`).
+* Implementación modular completa dividida en ramas funcionales (`feat/arquitectura-base`, `feat/rutas-y-contexto`, `feat/consumo-api-y-vistas`, `docs/documentacion-final`), con tipado estricto sin `any`, CSS BEM con unidades relativas (`rem`/`em`) y HTML5 semántico puro.
+* Documentación técnica definitiva (`INVENTARIO.md`, `README.md`, `uso_ia.md`) e instrucciones de ejecución de servidor local en desarrollo (`npm run dev`) y producción (`npm run build` + `npm run preview`).
 
 ## 5. Ajustes, refactorización y verificación
-* **Eliminación de renderizados en cascada (`useFetchApi.ts`):** Se eliminó la llamada síncrona a `setState` dentro de `useEffect` al consultar `responseCache`, derivando el resultado cacheado durante el render y manteniendo `AbortController` en el cleanup para evitar *race conditions*.
-* **Semántica HTML5 estricta en toda la aplicación:** Se utilizaron exclusivamente etiquetas con significado semántico (`<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<figure>`, `<figcaption>`, `<output>`, `<dl>`, `<dt>`, `<dd>`, `<time>`, `<small>`, `<ul>`, `<li>`, `<fieldset>`, `<legend>`, `<address>`, `<footer>`), prescindiendo por completo de `<div>` y `<span>`.
-* **CSS 100% relativo y BEM:** Todas las hojas de estilo se escribieron respetando BEM y utilizando únicamente `rem`, `em` y porcentajes.
-* **Verificación local:** Se comprobó en VS Code que el panel de Problemas marca `0` errores y se validó la navegación entre rutas (`/`, `/proyectos`, `/contacto`, `*`), el filtro de tecnologías, la validación del formulario y la carga en vivo desde GitHub API.
+* **Eliminación de renderizados en cascada (`useFetchApi.ts`):** Se refactorizó el hook inicial propuesto por la IA tras detectar un error de ESLint al ejecutar `setState` síncrono dentro de `useEffect` para respuestas cacheadas. Se derivó el estado cacheado durante el renderizado y se mantuvo `AbortController` en la función de limpieza para prevenir condiciones de carrera.
+* **Resolución de rutas relativas y caché del servidor TS:** Se estandarizó `src/data/portfolioData.ts`, se ajustaron las rutas de importación según nivel de carpeta (`../` en páginas y `../../` en componentes) y se reinició el servidor TypeScript en VS Code.
+* **Semántica HTML5 estricta y CSS relativo:** Se eliminaron todas las etiquetas `<div>` y `<span>`, reemplazándolas por `<figure>`, `<figcaption>`, `<output>`, `<dl>`, `<dt>`, `<dd>`, `<time>`, `<ul>` y `<li>`. Además, se sustituyeron todas las medidas en `px` por `rem` y `em`, y se corrigió la grilla del formulario de contacto de la E2.
+* **Verificación integral:** Se comprobó la compilación limpia con `npm run build` (cero errores de `tsc`), la ejecución local en navegador mediante `npm run dev` y `npm run preview`, el funcionamiento de todas las rutas (`/`, `/proyectos`, `/contacto`, `*`), el consumo en tiempo real de la API de GitHub y la auditoría de accesibilidad y navegación por teclado.
 
 ## 6. Reflexión crítica final
-*(Se completará en la rama final `docs/documentacion-final` tras ejecutar la auditoría de Lighthouse y revisar la compilación de producción).*
+El desarrollo de este proyecto me permitió comprender en profundidad la transición desde un sitio estático en HTML/CSS vanilla (Evaluación N°2) hacia una Single Page Application modular en React y TypeScript. Utilizar Inteligencia Artificial como copiloto técnico aceleró la generación de estructuras repetitivas y la migración de estilos a metodología BEM, pero también evidenció los riesgos reales de aceptar código sin validación: en dos ocasiones surgieron errores concretos (primero por discrepancias de nombres y rutas en importaciones TypeScript, y luego por una regla estricta de ESLint sobre renderizados en cascada dentro de `useEffect`) que exigieron analizar el mensaje del compilador, entender el ciclo de vida de React y refactorizar la solución. Gracias a haber estructurado el proyecto por ramas mediante Pull Requests, haber mantenido el tipado estricto sin `any` y haber probado manualmente cada estado de la interfaz (carga, error, éxito, rutas y teclado), cuento con pleno dominio del código implementado y estoy preparado para defender cada decisión arquitectónica en el cuestionario de validación sin asistencia externa.
