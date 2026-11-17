@@ -8,12 +8,12 @@
 ---
 
 ## 1. Herramientas utilizadas
-* **Gemini (Google):** Asistente principal utilizado para planificación arquitectónica según rúbrica, definición de interfaces estrictas en TypeScript, depuración de errores de compilación y Git, refactorización a metodología BEM, unidades relativas (`rem`/`em`) y revisión de accesibilidad semántica.
+* **Gemini (Google):** Asistente principal utilizado para planificación arquitectónica según rúbrica, definición de interfaces estrictas en TypeScript, depuración de errores de compilación, ESLint y Git, refactorización a metodología BEM, unidades relativas (`rem`/`em`) y revisión de accesibilidad semántica.
 
 ## 2. Propósito de uso
 * Analizar los requerimientos técnicos y criterios de evaluación de la Evaluación N°4 para estructurar el proyecto desde cero.
-* Diagnosticar y resolver conflictos iniciales de sincronización en Git y errores de resolución de módulos en TypeScript (`ts(2307)`).
-* Migrar fielmente la estructura, paleta territorial y contenido de la Evaluación N°2 hacia una arquitectura SPA en React y TypeScript sin uso de `any`, eliminando contenedores genéricos `<div>` y evitando medidas fijas en `px`.
+* Diagnosticar y resolver conflictos iniciales de sincronización en Git, errores de resolución de módulos en TypeScript (`ts(2307)`) y reglas estrictas de ESLint (`react-hooks/set-state-in-effect`).
+* Migrar fielmente la estructura, paleta territorial y contenido de la Evaluación N°2 hacia una arquitectura SPA en React y TypeScript sin uso de `any`, eliminando contenedores genéricos (`<div>`, `<span>`) y evitando medidas fijas en `px`.
 * Implementar la gestión de estado transversal (`ThemeContext`), el enrutamiento SPA (`react-router-dom`) y el consumo asíncrono de la API REST pública de GitHub.
 
 ## 3. Prompts representativos
@@ -23,18 +23,21 @@
 4. *"¿Creo las carpetas restantes de src y hago el INVENTARIO.md, README.md y lo que falta ahora mismo? Recuerda actualizar SIEMPRE el uso_ia.md cada vez que mande un nuevo prompt..."*
 5. *"Este es el portafolio de la Evaluación 2. Estos son los archivos correspondientes... Empecemos de una vez para poder hacer todo idéntico y perfecto, recuerda otra cosa, SIEMPRE LENGUAJE SEMÁNTICO TOTAL (y WAI-ARIA, solo si es necesario)."*
 6. *"Antes de pasar a la rama 3, quiero ver por qué hay errores acá, también si puedes usar lenguaje semántico en HomePages.tsx. Y por cuál link debo reemplazar esto en el código: '../../data/portfolioData'. Por si acaso, mi repo del portafolio original es este: https://github.com/mvaldes2026/mvaldes2026-portafolio-frontend"*
-7. *"Persiste el error en los demás archivos con el '../data/portfolioData' a pesar de que cambié el nombre a portfolioData.ts. Resolvamos eso, ah, y recuerda, TODOS LOS ARCHIVOS DEBEN LLEVAR CÓDIGO SEMÁNTICO, evitemos usar los <div> en lo posible y todo el código ordinario. También habían dicho algo de que ojalá evitar usar px en las medidas del CSS. Actualiza el commit a uno definitivo para enumerar TODOS LOS CAMBIOS PARA PASAR A LA RAMA 3 Y ACTUALIZA EL uso_ia.md."*
+7. *"Persiste el error en los demás archivos con el '../data/portfolioData' a pesar de que cambié el nombre a portfolioData.ts. Resolvamos eso, ah, y recuerda, TODOS LOS ARCHIVOS DEBEN LLEVAR CÓDIGO SEMÁNTICO, evitemos usar los <div> en lo posible y todo el código ordinario. También habían dicho algo de que ojalá evitar usar px en las medidas del CSS."*
+8. *"Pasemos a la rama 3, NO OLVIDES QUE NO SE USA px, y se usa código puramente semántico."*
+9. *"Antes de pasar a la siguiente rama, quiero ver por qué rayos hay un error acá [captura de `useFetchApi.ts` con `eslint(react-hooks/set-state-in-effect)`]. Recuerda actualizar el uso_ia.md y los comandos para subir esto (el commit)."*
 
 ## 4. Output recibido
 * Hoja de ruta priorizada según ponderación de los 9 criterios de la rúbrica.
-* Diagnóstico de la persistencia del error `ts(2307)` (diferencia de profundidad `../` en `pages/` frente a `../../` en `components/`, más reinicio del servidor TypeScript en VS Code).
-* Refactorización integral de la rama `feat/rutas-y-contexto` (`index.css`, `ThemeContext.tsx`, `Navbar`, `Footer`, `HomePage`, `NotFoundPage`) eliminando por completo etiquetas `<div>` y reemplazando todas las medidas `px` por unidades relativas `rem` y `em`.
+* Diagnóstico y solución del error `ts(2307)` en VS Code y refactorización semántica de la rama `feat/rutas-y-contexto`.
+* Implementación de la rama `feat/consumo-api-y-vistas`: servicio `githubService.ts`, custom hook `useFetchApi<T>`, componentes reutilizables (`StatusMessage`, `ProjectCard`, `RepoCard`) y vistas `ProjectsPage` y `ContactPage` sin etiquetas `<div>`/`<span>` ni unidades `px`.
+* Diagnóstico de la regla `eslint(react-hooks/set-state-in-effect)` en `useFetchApi.ts` y refactorización para derivar los datos cacheados en renderizado, reservando `setState` exclusivamente para la resolución asíncrona de `fetch`.
 
 ## 5. Ajustes, refactorización y verificación
-* **Resolución de importaciones y caché TS:** Se verificaron las rutas relativas según nivel de directorio (`../../data/portfolioData` en componentes y `../data/portfolioData` en páginas), se incorporó `src/assets/perfil.jpg` y se reinició el servidor TS de VS Code, confirmando cero errores en el panel de Problemas.
-* **HTML5 semántico sin `<div>`:** Se eliminaron todos los contenedores `<div>` de `Navbar.tsx` (`<header>`, `<h1>`, `<p>`, `<nav>`), `Footer.tsx` (`<footer>`, `<address>`), `HomePage.tsx` (`<section>`, `<header>`, `<figure>`, `<figcaption>`) y `NotFoundPage.tsx` (`<section>`, `<header>`), reservando WAI-ARIA solo para estados dinámicos (`aria-pressed`, `aria-label`, `aria-labelledby`).
-* **CSS responsivo con unidades relativas:** Se reemplazaron todas las medidas en `px` (bordes, radios, sombras, tamaños de avatar, ancho máximo y media queries) por `rem` y `em` para respetar las preferencias de zoom tipográfico del usuario.
-* **Registro de evidencia E2:** Se documentó el repositorio original (`https://github.com/mvaldes2026/mvaldes2026-portafolio-frontend`) para trazabilidad.
+* **Eliminación de renderizados en cascada (`useFetchApi.ts`):** Se eliminó la llamada síncrona a `setState` dentro de `useEffect` al consultar `responseCache`, derivando el resultado cacheado durante el render y manteniendo `AbortController` en el cleanup para evitar *race conditions*.
+* **Semántica HTML5 estricta en toda la aplicación:** Se utilizaron exclusivamente etiquetas con significado semántico (`<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<figure>`, `<figcaption>`, `<output>`, `<dl>`, `<dt>`, `<dd>`, `<time>`, `<small>`, `<ul>`, `<li>`, `<fieldset>`, `<legend>`, `<address>`, `<footer>`), prescindiendo por completo de `<div>` y `<span>`.
+* **CSS 100% relativo y BEM:** Todas las hojas de estilo se escribieron respetando BEM y utilizando únicamente `rem`, `em` y porcentajes.
+* **Verificación local:** Se comprobó en VS Code que el panel de Problemas marca `0` errores y se validó la navegación entre rutas (`/`, `/proyectos`, `/contacto`, `*`), el filtro de tecnologías, la validación del formulario y la carga en vivo desde GitHub API.
 
 ## 6. Reflexión crítica final
 *(Se completará en la rama final `docs/documentacion-final` tras ejecutar la auditoría de Lighthouse y revisar la compilación de producción).*
